@@ -3,195 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VVInsight | 幫你把生意從混沌，變成系統</title>
+    <title>VVInsight 勝解顧問 | 幫你把生意從混沌，變成系統</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* 基本樣式與變數 */
+        /* ── 基本樣式與變數 ── */
         :root {
             --primary-color: #001F3F; /* 海軍藍 */
+            --primary-dark: #001226;  /* 深海軍藍 */
             --secondary-color: #D4AF37; /* 金黃色 */
-            --accent-color: #007BFF;
+            --secondary-light: rgba(212, 175, 55, 0.15);
+            --line-green: #06C755; /* LINE 官方綠色 */
             --text-color: #333333;
-            --light-bg: #F8F9FA;
+            --text-light: #666666;
+            --bg-light: #F8F9FA;
             --white: #FFFFFF;
             --border-color: #EAEAEA;
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            margin: 0;
-            padding: 0;
             color: var(--text-color);
             background-color: var(--white);
-            line-height: 1.6;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
         a { text-decoration: none; transition: all 0.3s ease; }
-        ul { list-style: none; padding: 0; margin: 0; }
-        img { max-width: 100%; height: auto; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
         section { padding: 80px 0; }
-        .section-title { text-align: center; color: var(--primary-color); margin-bottom: 50px; font-size: 2.2rem; }
+        .section-title { text-align: center; color: var(--primary-color); margin-bottom: 15px; font-size: 2.2rem; font-weight: 900; }
+        .section-desc { text-align: center; color: var(--text-light); margin-bottom: 50px; font-size: 1.1rem; }
 
-        /* 按鈕樣式 */
+        /* ── 按鈕樣式 ── */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 28px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            border: 2px solid transparent;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 14px 32px; border-radius: 6px;
+            font-weight: 700; font-size: 1.05rem; cursor: pointer; border: 2px solid transparent;
+            transition: all 0.3s;
         }
-        .btn-primary {
-            background-color: var(--secondary-color);
-            color: var(--white);
-        }
-        .btn-primary:hover { background-color: #b5952d; transform: translateY(-2px); }
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
+        .btn-primary { background-color: var(--secondary-color); color: var(--white); }
+        .btn-primary:hover { background-color: #b5952d; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3); }
+        .btn-outline { background-color: transparent; color: var(--primary-color); border-color: var(--primary-color); }
         .btn-outline:hover { background-color: rgba(0, 31, 63, 0.05); transform: translateY(-2px); }
+        .btn-line { background-color: var(--line-green); color: var(--white); border-color: var(--line-green); }
+        .btn-line:hover { background-color: #05b34c; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(6, 199, 85, 0.3); }
 
-        /* 導覽列 */
+        /* ── 導覽列 ── */
         header {
-            background-color: var(--white);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0; border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 1000;
         }
         header .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 45px; }
+        .logo img { height: 40px; }
         .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { color: var(--text-color); font-weight: 500; }
+        .nav-links a { color: var(--primary-color); font-weight: 700; }
         .nav-links a:hover { color: var(--secondary-color); }
 
-        /* 區塊 1｜Hero */
-        .hero { background-color: var(--light-bg); padding: 60px 0 100px; }
-        .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .hero-text h1 { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 10px; line-height: 1.2; }
-        .hero-text .subtitle { font-size: 1.5rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 25px; }
-        .hero-text p { font-size: 1.1rem; margin-bottom: 40px; color: #555; }
-        .hero-btns { display: flex; gap: 15px; }
-        .hero-img { text-align: center; }
-        .hero-img img { border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); max-height: 600px; object-fit: cover;}
+        /* ── 區塊 1｜Hero 主視覺 ── */
+        .hero { background-color: var(--bg-light); padding: 60px 0 100px; }
+        .hero .container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 50px; align-items: center; }
+        .hero-tag {
+            display: inline-block; background: var(--secondary-light); color: #b5952d;
+            padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 0.9rem; margin-bottom: 20px;
+        }
+        .hero-text h1 { font-size: 3.2rem; color: var(--primary-color); margin-bottom: 15px; line-height: 1.2; font-weight: 900; }
+        .hero-text .subtitle { font-size: 1.4rem; font-weight: 700; color: var(--secondary-color); margin-bottom: 25px; }
+        .hero-text p { font-size: 1.1rem; margin-bottom: 40px; color: var(--text-light); }
+        .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+        .hero-img { position: relative; }
+        .hero-img img { border-radius: 12px; box-shadow: 0 20px 40px rgba(0,31,63,0.1); width: 100%; object-fit: cover; }
 
-        /* 區塊 2｜數字說服區 */
-        .stats { background-color: var(--primary-color); color: var(--white); padding: 50px 0; }
+        /* ── 區塊 2｜數字說服區 ── */
+        .stats { background-color: var(--primary-color); color: var(--white); padding: 60px 0; }
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 20px; }
-        .stat-item .num { font-size: 3rem; font-weight: 700; color: var(--secondary-color); line-height: 1; margin-bottom: 10px; }
-        .stat-item .label { font-size: 1.1rem; opacity: 0.9; }
+        .stat-item { border-right: 1px solid rgba(255,255,255,0.1); }
+        .stat-item:last-child { border-right: none; }
+        .stat-item .num { font-size: 3rem; font-weight: 900; color: var(--secondary-color); line-height: 1; margin-bottom: 10px; }
+        .stat-item .label { font-size: 1rem; opacity: 0.8; }
 
-        /* 區塊 3｜行銷語言牆 */
-        .language-wall .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        /* ── 區塊 3｜行銷語言牆 ── */
+        .language-wall { background-color: var(--white); }
+        .language-wall .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
         .wall-card {
-            background: var(--white);
-            border-left: 6px solid var(--secondary-color);
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-radius: 0 8px 8px 0;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: transform 0.3s;
+            background: var(--bg-light); border-left: 4px solid var(--secondary-color);
+            padding: 20px 25px; border-radius: 0 8px 8px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .wall-card:hover { transform: translateY(-5px); }
-        .wall-card strong { color: var(--primary-color); display: block; margin-bottom: 5px; font-size: 0.9rem;}
+        .wall-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+        .wall-card .prefix { color: var(--primary-color); font-weight: 700; display: block; margin-bottom: 5px; }
+        .wall-card .result { font-weight: 500; color: var(--text-color); }
 
-        /* 區塊 4｜顧問風格 */
-        .style-intro { background-color: var(--light-bg); }
+        /* ── 區塊 4｜顧問風格與圖示 ── */
+        .style-intro { background-color: var(--bg-light); }
         .work-style-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; }
-        .style-card { background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
-        .style-card h3 { color: var(--primary-color); margin-top: 0; font-size: 1.4rem; }
+        .style-card { background: var(--white); padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border-top: 4px solid var(--primary-color); }
+        .style-card h3 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.3rem; }
         
-        .table-responsive { overflow-x: auto; margin-bottom: 40px; }
-        table { width: 100%; border-collapse: collapse; background: var(--white); box-shadow: 0 5px 15px rgba(0,0,0,0.03); border-radius: 8px; overflow: hidden; }
-        th, td { padding: 18px; text-align: left; border-bottom: 1px solid var(--border-color); }
-        th { background-color: var(--primary-color); color: var(--white); font-weight: 500; }
+        /* 帶有圖示的三大維度 */
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 60px; }
+        .pillar { background: var(--white); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .pillar-icon { font-size: 2.5rem; margin-bottom: 15px; line-height: 1; }
+        .pillar h3 { color: var(--primary-color); font-size: 1.4rem; margin-bottom: 5px; }
+        .pillar .goal { color: var(--secondary-color); font-weight: 700; margin-bottom: 15px; font-size: 0.95rem; }
+        .pillar ul { padding-left: 20px; list-style: square; color: var(--text-light); }
+        .pillar ul li { margin-bottom: 8px; }
+
+        /* 常用框架表格 */
+        .table-wrapper { background: var(--white); border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid var(--border-color); }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 18px 25px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background-color: var(--primary-color); color: var(--white); font-weight: 700; }
         tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: var(--bg-light); }
+        td strong { color: var(--primary-color); }
 
-        /* 區塊 5｜精選案例 */
-        .case-studies { background-color: var(--white); }
-        .case-card { 
-            border: 1px solid var(--border-color); 
-            border-radius: 12px; 
-            margin-bottom: 40px; 
-            overflow: hidden;
-            position: relative;
-        }
-        .case-header { background-color: var(--primary-color); color: var(--white); padding: 25px 30px; }
-        .case-header h3 { margin: 0 0 10px 0; font-size: 1.5rem; display: flex; align-items: center; gap: 15px;}
-        .case-meta { font-size: 0.95rem; opacity: 0.8; display: flex; gap: 20px; }
-        .badge { background: var(--secondary-color); color: var(--white); padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        /* ── 區塊 5｜創辦人專區 (媽媽嘴) ── */
+        .founder-section { background-color: var(--primary-dark); color: var(--white); padding: 100px 0; }
+        .founder-grid { display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: start; }
+        .founder-title { font-size: 2.2rem; font-weight: 900; color: var(--secondary-color); margin-bottom: 20px; line-height: 1.3; }
+        .founder-desc { color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 40px; line-height: 1.8; }
         
-        .case-body { padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .case-section h4 { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 8px; margin-bottom: 15px; display: inline-block; }
-        .case-section ul { list-style: disc; padding-left: 20px; color: #555; }
-        .case-section ul li { margin-bottom: 8px; }
-        
-        .case-highlight { grid-column: 1 / -1; background: var(--light-bg); padding: 25px; border-radius: 8px; border-left: 4px solid var(--secondary-color); }
-        .case-highlight h4 { margin-top: 0; color: var(--primary-color); }
-        .case-highlight p { margin: 0; font-weight: 500; color: #333; }
-        
-        .case-table { margin-top: 15px; }
-        .case-table th { background-color: #e9ecef; color: var(--text-color); padding: 10px; }
-        .case-table td { padding: 10px; }
+        /* 里程碑表格 (深色版) */
+        .founder-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .founder-table th { background: rgba(255,255,255,0.05); color: var(--secondary-color); padding: 12px 20px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .founder-table td { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; }
+        .founder-table .rev { color: var(--white); font-weight: 900; font-size: 1.1rem; }
+        .founder-table .note { color: rgba(255,255,255,0.6); }
 
-        /* 區塊 6｜服務說明 */
-        .services { background-color: var(--light-bg); }
-        .service-methods { display: flex; justify-content: center; gap: 30px; margin-bottom: 50px; flex-wrap: wrap; }
-        .method-item { background: var(--white); padding: 20px 40px; border-radius: 50px; font-weight: bold; color: var(--primary-color); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        
-        .deliverables-box { background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .deliverables-box h3 { text-align: center; color: var(--primary-color); margin-bottom: 30px; }
-        .deliverables-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .deliverables-grid li { position: relative; padding-left: 25px; margin-bottom: 15px; }
-        .deliverables-grid li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary-color); font-weight: bold; }
+        /* 右側時間軸 (System Chips) */
+        .timeline-sidebar { display: flex; flex-direction: column; gap: 15px; }
+        .system-chip { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--secondary-color); border-radius: 0 8px 8px 0; padding: 18px; }
+        .system-chip .year { font-size: 0.85rem; color: var(--secondary-color); font-weight: 900; margin-bottom: 5px; }
+        .system-chip .name { font-size: 1rem; color: var(--white); font-weight: 500; line-height: 1.5; }
 
-        /* 區塊 7｜適合對象 */
-        .target-audience .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .target-card { border: 1px solid var(--border-color); padding: 25px; border-radius: 8px; display: flex; gap: 15px; transition: all 0.3s; }
-        .target-card:hover { border-color: var(--secondary-color); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.1); }
-        .target-icon { color: var(--secondary-color); font-size: 1.5rem; flex-shrink: 0; line-height: 1;}
+        /* ── 區塊 6｜其他精選案例 ── */
+        .cases { background-color: var(--white); }
+        .cases-grid { display: flex; flex-direction: column; gap: 30px; }
+        .case-card { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: 350px 1fr; box-shadow: 0 5px 15px rgba(0,0,0,0.03); transition: transform 0.3s;}
+        .case-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,31,63,0.08); }
+        .case-info { background-color: var(--bg-light); padding: 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border-color);}
+        .case-info h3 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 10px; }
+        .case-meta { font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px; }
+        .case-tag { display: inline-block; background: var(--primary-color); color: var(--white); padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px;}
+        .case-details { padding: 40px; }
+        .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px; }
+        .service-tags span { background: var(--white); border: 1px solid var(--border-color); padding: 5px 12px; border-radius: 50px; font-size: 0.85rem; color: var(--text-light); }
+        .highlight-box { background: rgba(212, 175, 55, 0.05); border-left: 4px solid var(--secondary-color); padding: 20px; border-radius: 0 8px 8px 0; }
+        .highlight-box h4 { color: var(--primary-color); margin-bottom: 8px; }
 
-        /* 區塊 8｜CTA */
+        /* ── 區塊 7｜適合對象清單 ── */
+        .target-audience { background-color: var(--bg-light); }
+        .target-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .target-item { display: flex; align-items: flex-start; gap: 15px; background: var(--white); padding: 20px 25px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .target-icon { background: var(--primary-color); color: var(--secondary-color); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+
+        /* ── 區塊 8｜聯絡我 CTA ── */
         .cta-section { background-color: var(--primary-color); color: var(--white); text-align: center; padding: 100px 0; }
-        .cta-section h2 { font-size: 3rem; margin-bottom: 15px; color: var(--secondary-color); }
-        .cta-section p { font-size: 1.3rem; margin-bottom: 40px; }
-        .cta-actions { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; }
-        .contact-info { background: rgba(255,255,255,0.1); display: inline-block; padding: 15px 40px; border-radius: 50px; font-size: 1.2rem; }
-        .contact-info strong { color: var(--secondary-color); font-size: 1.4rem; letter-spacing: 2px;}
+        .cta-section h2 { font-size: 2.8rem; margin-bottom: 15px; color: var(--white); }
+        .cta-section p { font-size: 1.2rem; margin-bottom: 40px; color: rgba(255,255,255,0.8); }
+        
+        .contact-box {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; padding: 30px; display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+            margin-bottom: 40px; min-width: 300px;
+        }
+        .contact-box .label { font-size: 0.95rem; color: var(--secondary-color); font-weight: 700; letter-spacing: 2px; }
+        .contact-box .number { font-size: 2.5rem; font-weight: 900; letter-spacing: 2px; color: var(--white); line-height: 1;}
+        .contact-box .sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
 
-        /* 頁尾 */
-        footer { background-color: #000c1a; color: #888; text-align: center; padding: 30px 0; font-size: 0.9rem; }
+        .cta-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
-        /* 響應式設計 */
+        /* ── 頁尾 ── */
+        footer { background-color: #000a14; color: #666; text-align: center; padding: 40px 0; font-size: 0.9rem; }
+        footer img { height: 30px; opacity: 0.3; margin: 0 auto 15px; filter: grayscale(100%); }
+
+        /* ── 響應式設計 ── */
         @media (max-width: 992px) {
             .hero .container { grid-template-columns: 1fr; text-align: center; }
             .hero-btns { justify-content: center; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .work-style-grid { grid-template-columns: 1fr; }
-            .case-body { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat-item { border-bottom: 1px solid rgba(255,255,255,0.1); padding: 20px 0; }
+            .stat-item:nth-child(even) { border-right: none; }
+            .work-style-grid, .pillars-grid { grid-template-columns: 1fr; }
+            .founder-grid { grid-template-columns: 1fr; gap: 40px; }
+            .timeline-sidebar { display: grid; grid-template-columns: repeat(2, 1fr); }
+            .case-card { grid-template-columns: 1fr; }
+            .case-info { border-right: none; border-bottom: 1px solid var(--border-color); padding: 30px; }
+            .case-details { padding: 30px; }
+            .target-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* 行動版可另作漢堡選單 */
+            .nav-links { display: none; }
             .hero-text h1 { font-size: 2.5rem; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .deliverables-grid { grid-template-columns: 1fr; }
-            .cta-actions { flex-direction: column; padding: 0 20px; }
+            .contact-box .number { font-size: 2rem; }
+            .timeline-sidebar { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -200,128 +214,154 @@
     <header>
         <div class="container">
             <a href="#" class="logo">
-                <img src="image_0.png" alt="VVInsight 商標">
+                <img src="image_0.png" alt="VVInsight 勝解顧問商標">
             </a>
             <nav class="nav-links">
-                <a href="#hero">關於顧問</a>
-                <a href="#case-studies">精選案例</a>
+                <a href="#founder">創辦人經歷</a>
+                <a href="#cases">精選案例</a>
                 <a href="#services">服務項目</a>
-                <a href="#cta" class="btn btn-primary" style="padding: 8px 20px; font-size: 1rem;">預約諮詢</a>
+                <a href="#cta" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.95rem;">預約諮詢</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero" id="hero">
+    <section class="hero">
         <div class="container">
             <div class="hero-text">
-                <h1>幫你把生意從混沌，變成系統。</h1>
+                <span class="hero-tag">實戰型商業顧問</span>
+                <h1>幫你把生意從混沌，<br><span style="color: var(--secondary-color);">變成系統。</span></h1>
                 <p class="subtitle">行銷、管理、團隊——三個維度，一個顧問。</p>
-                <p>我是一個實戰型顧問。11個專案合作，橫跨餐飲、零售、新創、健康、新能源——每一個案子，我都只做一件事：<strong>讓你的生意從老闆一人扛，變成系統在跑。</strong></p>
+                <p>11個專案合作，橫跨餐飲、零售、新創、健康、新能源——每一個案子，我都只做一件事：<strong>讓你的生意從老闆一人扛，變成系統在跑。</strong></p>
                 <div class="hero-btns">
-                    <a href="#cta" class="btn btn-primary">預約免費諮詢</a>
-                    <a href="#case-studies" class="btn btn-outline">查看案例</a>
+                    <a href="#cta" class="btn btn-primary">免費諮詢 30 分鐘</a>
+                    <a href="#cases" class="btn btn-outline">查看客戶案例</a>
                 </div>
             </div>
             <div class="hero-img">
-                <img src="image_1.png" alt="VVInsight 顧問">
+                <img src="image_1.png" alt="盧達彬 顧問照片">
             </div>
         </div>
     </section>
 
     <section class="stats">
         <div class="container stats-grid">
-            <div class="stat-item">
-                <div class="num">11</div>
-                <div class="label">個收費結案專案</div>
-            </div>
-            <div class="stat-item">
-                <div class="num">6+</div>
-                <div class="label">個產業橫跨</div>
-            </div>
-            <div class="stat-item">
-                <div class="num">2~18</div>
-                <div class="label">個月平均服務期</div>
-            </div>
-            <div class="stat-item">
-                <div class="num">多領域</div>
-                <div class="label">餐飲・零售・新創・製造</div>
-            </div>
+            <div class="stat-item"><div class="num">11</div><div class="label">個收費結案專案</div></div>
+            <div class="stat-item"><div class="num">6+</div><div class="label">個產業橫跨</div></div>
+            <div class="stat-item"><div class="num">2~18</div><div class="label">個月平均服務期</div></div>
+            <div class="stat-item"><div class="num">18</div><div class="label">年自身創業經驗</div></div>
         </div>
     </section>
 
-    <section class="language-wall" id="results">
+    <section class="language-wall">
         <div class="container">
-            <h2 class="section-title">實戰成果，用數字說話</h2>
+            <h2 class="section-title">這些老闆，已經做到了</h2>
+            <p class="section-desc">每一條，都有真實數字，都有真實的人。</p>
             <div class="grid">
-                <div class="wall-card"><strong>幫餐廳 2 個月內就</strong>日出餐量從 70 碗衝上 200 碗</div>
-                <div class="wall-card"><strong>幫早餐加盟店 1 個月內就</strong>開幕業績突破百萬</div>
-                <div class="wall-card"><strong>幫素食品牌 3 個月內就</strong>建立電商＋LINE會員系統，單月營收 41 萬</div>
-                <div class="wall-card"><strong>幫按摩工作室 6 個月內就</strong>建立連鎖加盟路徑，回購率達 80%</div>
-                <div class="wall-card"><strong>幫鍍膜創業者 3 個月內就</strong>建立招商機制，一桶材料產生 20 萬元收入</div>
-                <div class="wall-card"><strong>幫咖啡廳老闆 4 個月內就</strong>建立幹部制度，自己不用再事必躬親</div>
-                <div class="wall-card"><strong>幫新創品牌 6 個月內就</strong>從零打造組織架構＋品牌系統，游擊變部隊</div>
-                <div class="wall-card"><strong>幫手作工作室 2 個月內就</strong>LINE OA 全自動化，IG 粉絲直達回購</div>
+                <div class="wall-card"><span class="prefix">幫餐廳 2 個月內就</span><span class="result">日出餐量從 70 碗衝上 200 碗</span></div>
+                <div class="wall-card"><span class="prefix">幫早餐加盟店 1 個月內就</span><span class="result">開幕業績突破百萬</span></div>
+                <div class="wall-card"><span class="prefix">幫素食品牌 3 個月內就</span><span class="result">建立電商＋LINE會員系統，單月營收 41 萬</span></div>
+                <div class="wall-card"><span class="prefix">幫按摩工作室 6 個月內就</span><span class="result">建立連鎖加盟路徑，回購率達 80%</span></div>
+                <div class="wall-card"><span class="prefix">幫傳統糕點品牌 2 年內就</span><span class="result">LINE會員從 0 成長至 4,902 人，假日來客成長近 6 倍</span></div>
+                <div class="wall-card"><span class="prefix">幫咖啡廳老闆 4 個月內就</span><span class="result">建立幹部制度，自己不用再事必躬親</span></div>
+                <div class="wall-card"><span class="prefix">幫新創品牌 6 個月內就</span><span class="result">從零打造組織架構＋品牌系統，游擊變部隊</span></div>
+                <div class="wall-card"><span class="prefix">幫手作工作室 2 個月內就</span><span class="result">LINE OA 全自動化，IG 粉絲直達回購</span></div>
             </div>
         </div>
     </section>
 
-    <section class="style-intro" id="style">
+    <section class="founder-section" id="founder">
         <div class="container">
-            <h2 class="section-title">顧問風格與工作框架</h2>
+            <div class="founder-grid">
+                <div>
+                    <span class="hero-tag" style="background: rgba(255,255,255,0.1); color: var(--secondary-color); margin-bottom: 15px;">🏷️ 創辦人親歷品牌</span>
+                    <h2 class="founder-title">我不是讀書讀來的—<br>是自己先做到，再帶你做到。</h2>
+                    <p class="founder-desc">2008 年，我創立了「媽媽嘴咖啡」。從第一個月 4 萬元開始，到每天 1,500 人排隊，再到今天有五位主管各司其職、系統自主運轉。我把在自己身上跑通的每一套方法，帶進每一個顧問案子。</p>
+                    
+                    <table class="founder-table">
+                        <thead>
+                            <tr><th style="text-align: left;">時間</th><th style="text-align: left;">月營業額</th><th style="text-align: left;">里程碑</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>2008年4月</td><td class="rev">4 萬元</td><td class="note">開幕第一個月</td></tr>
+                            <tr><td>2008年10月</td><td class="rev">20 萬元</td><td class="note">開幕半年，成長 5 倍</td></tr>
+                            <tr><td>2010年10月</td><td class="rev">40 萬元</td><td class="note">導入幹部系統後再翻倍</td></tr>
+                            <tr><td>2013年5月</td><td class="rev">180 萬元</td><td class="note">重新開幕，每天 1,500 人排隊</td></tr>
+                            <tr><td>2026年現況</td><td class="rev">穩健經營</td><td class="note">系統自主運作，持續 18 年</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="timeline-sidebar">
+                    <div class="system-chip"><div class="year">2010 年</div><div class="name">導入雲端幹部系統<br>讓店不再只靠老闆一人撐</div></div>
+                    <div class="system-chip"><div class="year">2013 年</div><div class="name">導入中階幹部<br>建立分層管理，老闆抽身</div></div>
+                    <div class="system-chip"><div class="year">2019 年</div><div class="name">導入生產力績效獎金<br>用數字衡量每個人的貢獻</div></div>
+                    <div class="system-chip"><div class="year">2021 年</div><div class="name">導入線上線下銷售<br>透過全員行銷走過疫情</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="style-intro" id="services">
+        <div class="container">
+            <h2 class="section-title">我怎麼和你合作</h2>
+            <p class="section-desc">每個合作都從盤點開始，每個月都有看得到、用得到的交付物。</p>
             
             <div class="work-style-grid">
                 <div class="style-card">
-                    <h3>進場前，先盤點。</h3>
-                    <p>月初先理解你的現況，找到最卡關的地方，再動工。</p>
+                    <h3>1. 進場前，先盤點</h3>
+                    <p>月初先理解你的現況，找到最卡關的地方，再動工。不亂開藥，先把病找出來。</p>
                 </div>
                 <div class="style-card">
-                    <h3>不掌兵權。</h3>
+                    <h3>2. 不掌兵權</h3>
                     <p>我是顧問，不是代理人。決策權在你，執行力在你的團隊——我幫你搭出框架。</p>
                 </div>
                 <div class="style-card">
-                    <h3>每個月都有具體交付物。</h3>
-                    <p>不是空談理論，是給你能用的東西：SOP、損益表、LINE流程、行銷策略。</p>
+                    <h3>3. 每月有具體交付物</h3>
+                    <p>不是空談理論，是給你能用的東西：SOP、損益表、LINE OA 流程、行銷策略。</p>
                 </div>
             </div>
 
-            <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.5rem;">三大工作維度</h3>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 15%;">維度</th>
-                            <th style="width: 25%;">核心目標</th>
-                            <th>常見服務</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>行銷</strong></td>
-                            <td>把對的人帶進來</td>
-                            <td>顧客旅程設計、LINE OA 分眾行銷、品牌定位與產品策略、口碑與社群行銷</td>
-                        </tr>
-                        <tr>
-                            <td><strong>管理</strong></td>
-                            <td>讓生意跑得更順</td>
-                            <td>SOP 流程設計、每日/月損益管理、KPI 績效追蹤、加盟/連鎖體系建立</td>
-                        </tr>
-                        <tr>
-                            <td><strong>團隊</strong></td>
-                            <td>讓人幫你做事</td>
-                            <td>幹部制度設計、選用育評留機制、會議制度與報告系統、接班人培養計畫</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 30px; font-size: 1.8rem;">三大工作維度</h3>
+            <div class="pillars-grid">
+                <div class="pillar">
+                    <div class="pillar-icon">📣</div>
+                    <h3>行銷</h3>
+                    <div class="goal">把對的人帶進來</div>
+                    <ul>
+                        <li>顧客旅程設計</li>
+                        <li>LINE OA 分眾行銷</li>
+                        <li>品牌定位與產品策略</li>
+                        <li>口碑與社群行銷</li>
+                    </ul>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">⚙️</div>
+                    <h3>管理</h3>
+                    <div class="goal">讓生意跑得更順</div>
+                    <ul>
+                        <li>SOP 流程設計</li>
+                        <li>每日/月損益管理</li>
+                        <li>KPI 績效追蹤</li>
+                        <li>加盟/連鎖體系建立</li>
+                    </ul>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">👥</div>
+                    <h3>團隊</h3>
+                    <div class="goal">讓人幫你做事</div>
+                    <ul>
+                        <li>幹部制度設計</li>
+                        <li>選用育評留機制</li>
+                        <li>會議制度與報告系統</li>
+                        <li>接班人培養計畫</li>
+                    </ul>
+                </div>
             </div>
 
-            <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.5rem;">常用框架</h3>
-            <div class="table-responsive">
+            <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 20px; font-size: 1.5rem;">常用框架</h3>
+            <div class="table-wrapper">
                 <table>
                     <thead>
-                        <tr>
-                            <th style="width: 25%;">框架名稱</th>
-                            <th>內容</th>
-                        </tr>
+                        <tr><th style="width: 25%;">框架名稱</th><th>內容</th></tr>
                     </thead>
                     <tbody>
                         <tr><td><strong>產品策略框架</strong></td><td>引流商品 → 獲利商品 → 裂變商品 → 資本商品</td></tr>
@@ -335,190 +375,79 @@
         </div>
     </section>
 
-    <section class="case-studies" id="case-studies">
+    <section class="cases" id="cases">
         <div class="container">
             <h2 class="section-title">精選合作案例</h2>
+            <p class="section-desc">每一則都是真實合作，有背景、有過程、有數字。</p>
 
-            <div class="case-card">
-                <div class="case-header">
-                    <h3>南京東路上早餐 × 火鍋集團</h3>
-                    <div class="case-meta">
-                        <span>產業：餐飲加盟</span>
-                        <span>期間：2024.01 - 2025.06</span>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-info">
+                        <span class="case-tag">連鎖加盟</span>
+                        <h3>南京東路上早餐 × 火鍋集團</h3>
+                        <div class="case-meta">產業：餐飲加盟<br>期間：2024.01 - 2025.06</div>
+                        <p style="color: var(--text-light); font-size: 0.95rem;">台北知名火鍋品牌，同時孵化早餐子品牌。協助從品牌建立、SOP 設計，到授權加盟制度完整建立。</p>
+                    </div>
+                    <div class="case-details">
+                        <div class="service-tags">
+                            <span>加盟手冊設計</span><span>24個月損益模擬</span><span>LINE OA整合</span><span>加盟合約設計</span><span>選用育評留體系</span>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>🔥 核心亮點</h4>
+                            <p>火鍋授權加盟＋店鋪販售模式成功建立，首家加盟店開幕第 1 個月營收達 300 萬元。早餐子品牌加盟店開幕第 1 個月業績突破 100 萬元。</p>
+                        </div>
                     </div>
                 </div>
-                <div class="case-body">
-                    <div class="case-section">
-                        <h4>客戶背景</h4>
-                        <p>台北知名火鍋品牌，同時孵化早餐子品牌。委託顧問協助從品牌建立、SOP 設計，到授權加盟制度完整建立，打造可複製的連鎖擴張模式。</p>
-                    </div>
-                    <div class="case-section">
-                        <h4>服務項目</h4>
-                        <ul>
-                            <li>品牌定位、加盟手冊設計</li>
-                            <li>24個月損益模擬（加盟主視角）</li>
-                            <li>三個 LINE OA 帳號整合</li>
-                            <li>加盟合約設計與法律框架協助</li>
-                            <li>選用育評留人才體系建立</li>
-                        </ul>
-                    </div>
-                    <div class="case-highlight">
-                        <h4>🔥 核心亮點</h4>
-                        <p>火鍋授權加盟＋店鋪販售模式成功建立，首家加盟店開幕第 1 個月營收達 300 萬元。早餐子品牌加盟店開幕第 1 個月，業績突破 100 萬元。</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="case-card">
-                <div class="case-header">
-                    <h3>天母咖啡</h3>
-                    <div class="case-meta">
-                        <span>產業：咖啡廳管理</span>
-                        <span>期間：2023.07 - 2024.01 (6個月)</span>
+                <div class="case-card">
+                    <div class="case-info">
+                        <span class="case-tag">品牌轉型</span>
+                        <h3>鹿港傳統糕點轉型</h3>
+                        <div class="case-meta">產業：傳統糕點 × 文化體驗<br>期間：2023.02 - 2025.12</div>
+                        <p style="color: var(--text-light); font-size: 0.95rem;">從零開始籌備概念店，陪跑品牌轉型為「鹿港文化體驗的起點」，並孵化第二店。</p>
+                    </div>
+                    <div class="case-details">
+                        <div class="service-tags">
+                            <span>開店籌備</span><span>LINE OA建置</span><span>散步地圖行銷</span><span>體驗產品化</span><span>會員制度</span>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>🔥 核心亮點</h4>
+                            <p>從零建立 4,902 人 LINE 會員 (開封率70%)、6,271 人實體會員。假日來客數成長近 6 倍。品牌成功轉型並孵化第二店。</p>
+                        </div>
                     </div>
                 </div>
-                <div class="case-body">
-                    <div class="case-section">
-                        <h4>客戶背景</h4>
-                        <p>天母精品咖啡廳，老闆身兼多職，從吧台到帳務一人扛。需要建立幹部制度與財務系統，讓老闆能夠抽身。</p>
-                    </div>
-                    <div class="case-section">
-                        <h4>服務項目</h4>
-                        <ul>
-                            <li>幹部制度：錢/貨/人 三角分工</li>
-                            <li>SKU 縮減：86項聚焦至20項高獲利商品</li>
-                            <li>每日損益系統：讓老闆每天看數字決策</li>
-                            <li>LINE OA 整合：會員系統、回購動線</li>
-                            <li>無酬互惠行銷：網紅體驗換口碑</li>
-                        </ul>
-                    </div>
-                    <div class="case-highlight">
-                        <h4>🔥 核心亮點</h4>
-                        <p>老闆首度能從「做生意」走向「管生意」。接手三個月營業額成長26%、前三大點餐品類由45%提升至65%集中販售。</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="case-card">
-                <div class="case-header">
-                    <h3>鹿港傳統糕點轉型</h3>
-                    <div class="case-meta">
-                        <span>產業：傳統糕點 × 文化體驗</span>
-                        <span>期間：2023.02 - 2025.12 (近3年)</span>
+                <div class="case-card">
+                    <div class="case-info">
+                        <span class="case-tag">幹部制度</span>
+                        <h3>天母精品咖啡廳</h3>
+                        <div class="case-meta">產業：咖啡廳管理<br>期間：6個月</div>
+                        <p style="color: var(--text-light); font-size: 0.95rem;">老闆身兼多職一人扛，協助建立幹部制度與財務系統，讓老闆能夠抽身。</p>
+                    </div>
+                    <div class="case-details">
+                        <div class="service-tags">
+                            <span>錢/貨/人 三角分工</span><span>SKU精簡</span><span>每日損益系統</span><span>LINE會員系統</span>
+                        </div>
+                        <div class="highlight-box">
+                            <h4>🔥 核心亮點</h4>
+                            <p>老闆首度能從「做生意」走向「管生意」。接手三個月營業額成長 26%、前三大點餐品類集中販售度由 45% 提升至 65%。</p>
+                        </div>
                     </div>
                 </div>
-                <div class="case-body">
-                    <div class="case-section">
-                        <h4>客戶背景</h4>
-                        <p>鹿港在地傳統糕點品牌。從零籌備概念店，陪跑品牌轉型為「鹿港文化體驗的起點」，並孵化第二店。</p>
-                        <h4 style="margin-top: 20px;">服務項目</h4>
-                        <ul>
-                            <li>開店全程籌備、品類定位三階段轉型</li>
-                            <li>LINE OA 完整建置與散步地圖行銷</li>
-                            <li>體驗服務產品化（一日鹿港人、DIY）</li>
-                            <li>會員制度演進與中秋限購檔期策略</li>
-                        </ul>
-                    </div>
-                    <div class="case-highlight">
-                        <h4>🔥 核心亮點</h4>
-                        <table class="case-table table-responsive" style="width:100%; text-align:left; font-size:0.95rem; background: #fff; margin-top: 10px;">
-                            <tr><th>指標</th><th>成果</th></tr>
-                            <tr><td>LINE 會員</td><td>0 → 4,902 人 (開封率 70%)</td></tr>
-                            <tr><td>實體會員</td><td>6,271 人</td></tr>
-                            <tr><td>假日來客數</td><td>24 組/日 → 136 組/日 (成長近 6 倍)</td></tr>
-                        </table>
-                        <p style="margin-top: 10px; font-size: 0.95rem; color: #555;">從零開幕，品牌成功轉型，近3年內建立破萬會員基數，並成功孵化第二店。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="case-card" style="border-color: var(--secondary-color); border-width: 2px;">
-                <div class="case-header" style="background-color: #001226;">
-                    <h3>媽媽嘴咖啡 <span class="badge">🏷️ 創辦人親歷品牌</span></h3>
-                    <div class="case-meta">
-                        <span>產業：河岸咖啡廳</span>
-                        <span>期間：2008.04 至今 (18年)</span>
-                    </div>
-                </div>
-                <div class="case-body">
-                    <div class="case-section">
-                        <h4>品牌背景</h4>
-                        <p>這是我在 2008 年親自創立的品牌，從月營收 4 萬開始。這是我所有顧問方法論的原產地——<strong>我不是讀書讀來的，是自己把它做出來的。</strong></p>
-                    </div>
-                    <div class="case-section">
-                        <h4>我在自己身上做的事</h4>
-                        <ul>
-                            <li>2010 導入雲端幹部系統</li>
-                            <li>2013 導入中階幹部，老闆抽身</li>
-                            <li>2019 導入生產力績效獎金</li>
-                            <li>2021 導入線上線下全員行銷</li>
-                            <li>2026 現況：五長分工明確、多渠道並行</li>
-                        </ul>
-                    </div>
-                    <div class="case-highlight">
-                        <h4>🔥 成長里程碑</h4>
-                        <p>開幕半年業績成長 5 倍；2013 年重新開幕創下 180 萬月收、每天 1,500 人排隊的高峰。<strong>我把在自己身上跑通的系統，帶進每一個顧問案子。</strong></p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">合作方式與具體交付</h2>
-            
-            <div class="service-methods">
-                <div class="method-item">月顧問制 (按時數)</div>
-                <div class="method-item">六個月專案 (按進度)</div>
-                <div class="method-item">課程規劃 (按時數)</div>
-            </div>
-
-            <div class="deliverables-box">
-                <h3>顧問時，你能拿到什麼？</h3>
-                <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem;">每個合作案交付的內容因案而異，但你會拿到的，永遠是<strong>可以直接用的東西</strong>，不是報告。</p>
-                <ul class="deliverables-grid">
-                    <li>顧問會議記錄＋本月行動清單（每次會議後即交付）</li>
-                    <li>SOP 文件（如開閉店、服務流程、出貨、人員管理）</li>
-                    <li>損益試算表 / 每日損益追蹤表</li>
-                    <li>LINE OA 動線設計稿（圖文選單結構、標籤分眾、自動回覆）</li>
-                    <li>行銷月計畫 / 內容方向建議</li>
-                    <li>KPI 追蹤表 / 幹部制度設計文件</li>
-                    <li>加盟手冊 / 招商簡報（擴張型合作）</li>
-                </ul>
             </div>
         </div>
     </section>
 
     <section class="target-audience">
         <div class="container">
-            <h2 class="section-title">這些老闆最適合找我</h2>
-            <div class="grid">
-                <div class="target-card">
-                    <div class="target-icon">✦</div>
-                    <div>你覺得生意做得很累，但不知道卡在哪裡</div>
-                </div>
-                <div class="target-card">
-                    <div class="target-icon">✦</div>
-                    <div>店/品牌已有基本收入，想再往上走卻不知怎麼做</div>
-                </div>
-                <div class="target-card">
-                    <div class="target-icon">✦</div>
-                    <div>你在想展店、加盟、或開第二條產品線</div>
-                </div>
-                <div class="target-card">
-                    <div class="target-icon">✦</div>
-                    <div>你的員工越來越多，但管理越來越混亂</div>
-                </div>
-                <div class="target-card">
-                    <div class="target-icon">✦</div>
-                    <div>想做LINE行銷、社群、電商，不知從哪開始</div>
-                </div>
-                <div class="target-card">
-                    <div class="target-icon">✦</div>
-                    <div>已有想法，只需要一個人幫你系統化、落地化</div>
-                </div>
+            <h2 class="section-title">這些老闆，最適合找我</h2>
+            <div class="target-grid">
+                <div class="target-item"><div class="target-icon">✓</div><div>你覺得生意做得很累，但不知道卡在哪裡</div></div>
+                <div class="target-item"><div class="target-icon">✓</div><div>店/品牌已有基本收入，想再往上走卻不知怎麼做</div></div>
+                <div class="target-item"><div class="target-icon">✓</div><div>你在想展店、加盟、或開第二條產品線</div></div>
+                <div class="target-item"><div class="target-icon">✓</div><div>你的員工越來越多，但管理越來越混亂</div></div>
+                <div class="target-item"><div class="target-icon">✓</div><div>想做LINE行銷、社群、電商，不知從哪開始</div></div>
+                <div class="target-item"><div class="target-icon">✓</div><div>已有想法，只需要一個人幫你系統化、落地化</div></div>
             </div>
         </div>
     </section>
@@ -526,21 +455,30 @@
     <section class="cta-section" id="cta">
         <div class="container">
             <h2>準備好了嗎？</h2>
-            <p>先聊 30 分鐘，看看我能幫上什麼。</p>
-            <div class="cta-actions">
-                <a href="#" class="btn btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">預約免費諮詢 30 分鐘</a>
-                <a href="#" class="btn btn-outline" style="background: white; border: none; font-size: 1.2rem; padding: 15px 40px;">加入 LINE 開始聊</a>
+            <p>先聊 30 分鐘，看看我能幫上什麼。<br>不收費，不推銷，只聊你的生意。</p>
+            
+            <div class="contact-box">
+                <div class="label">LINE ID ／ 手機直撥</div>
+                <div class="number">0935-221-506</div>
+                <div class="sub">(手機號碼即為 LINE ID)</div>
             </div>
-            <div class="contact-info">
-                直接搜尋加入 LINE ID：<strong>0935221506</strong> (手機號碼即 ID)
+
+            <div class="cta-actions">
+                <a href="tel:0935221506" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.15rem;">立即致電諮詢</a>
+                
+                <a href="https://line.me/ti/p/~0935221506" class="btn btn-line" style="padding: 16px 40px; font-size: 1.15rem;" target="_blank">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.494.25l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+                    加 LINE 開始聊
+                </a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <img src="image_0.png" alt="VVInsight" style="height: 30px; opacity: 0.5; margin-bottom: 15px; filter: grayscale(100%) brightness(200%);">
-            <p>&copy; 2026 VVInsight.com. All Rights Reserved.</p>
+            <img src="image_0.png" alt="VVInsight">
+            <p>&copy; 2026 VVInsight 勝解顧問. All Rights Reserved.</p>
+            <p style="margin-top: 5px;">幫你把生意從混沌，變成系統。</p>
         </div>
     </footer>
 
